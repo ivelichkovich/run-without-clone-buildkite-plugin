@@ -1,3 +1,6 @@
 #!/bin/bash
 
-echo "[Run Without Clone Plugin] - Skipping git checkout"
+echo "Special Checkout Step With Bitbucket-Server PRs From Forks Support"
+git clone -v -- $BUILDKITE_PULL_REQUEST_REPO .
+git clean -ffxdq
+git fetch -v --prune origin $BUILDKITE_COMMIT
