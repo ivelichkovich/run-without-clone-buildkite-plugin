@@ -1,6 +1,12 @@
 #!/bin/bash
 
 echo "Special Checkout Step With Bitbucket-Server PRs From Forks Support"
-git clone -v -- $BUILDKITE_PULL_REQUEST_REPO .
+if [ -z "$BUILDKITE_PULL_REQUEST_REPO" ]
+then
+      git clone -v -- $BUILDKITE_REPO .
+else
+      git clone -v -- $BUILDKITE_PULL_REQUEST_REPO .
+fi
+
 git clean -ffxdq
 git fetch -v --prune origin $BUILDKITE_COMMIT
